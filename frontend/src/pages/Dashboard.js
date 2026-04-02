@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import API from '../services/api';
+import Loader from '../components/Loader';
 
 function Dashboard() {
   const [profile, setProfile] = useState(null);
@@ -18,18 +19,18 @@ function Dashboard() {
   }, []);
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      {error && <p>{error}</p>}
+    <div className="p-8">
+      <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+      {error && <p className="text-red-500">{error}</p>}
       {profile ? (
-        <div>
-          <h2>Welcome, {profile.name}</h2>
-          <p>Email: {profile.email}</p>
-          <p>Bio: {profile.bio}</p>
-          <p>Skills: {profile.skills.join(', ')}</p>
+        <div className="bg-white shadow-md p-4 rounded-md">
+          <h2 className="text-xl font-semibold">Welcome, {profile.name}</h2>
+          <p className="text-gray-700">Email: {profile.email}</p>
+          <p className="text-gray-700">Bio: {profile.bio}</p>
+          <p className="text-gray-700">Skills: {profile.skills.join(', ')}</p>
         </div>
       ) : (
-        <p>Loading...</p>
+        <Loader />
       )}
     </div>
   );

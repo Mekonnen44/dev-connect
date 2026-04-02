@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
+const projectRoutes = require('./routes/project');
+const userRoutes = require('./routes/user');
 const authMiddleware = require('./middleware/authMiddleware');
 
 const app = express();
@@ -18,10 +20,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
-
-// Example of a protected route
-drugMiddleware, (req, res) => {
-  res.send('This is a protected route');
-});
+app.use('/api/projects', projectRoutes);
+app.use('/api/users', userRoutes);
 
 module.exports = app;
